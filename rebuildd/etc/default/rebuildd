@@ -4,7 +4,7 @@
 # Set to 1 to enable rebuildd
 START_REBUILDD=1
 # Set to 1 to enable rebuildd Web server
-START_REBUILDD_HTTPD=0
+START_REBUILDD_HTTPD=1
 
 # The variables below are used by various shell scripts
 # to manage your pbuilder instances.
