@@ -1,0 +1,34 @@
+Installing instructions
+=======================
+
+Run following commands as a root in given order.
+
+= reprepro
+
+mkdir -p /var/packages/conf
+mkdir -p /var/packages/incoming
+mkdir -p /var/packages/incomingtmp
+mkdir -p /var/packages/db
+
+cp reprepro/conf/* /var/packages/conf
+
+= dput
+
+cp dput/.dput.cf ~/
+
+= apache2
+
+cp apache2/packages /etc/apache2/sites-available
+ln -s /etc/apache2/sites-available/packages /etc/apache2/sites-enabled/packages
+
+= pbuilder
+
+tools/setup_pbuilder_chroots.sh
+
+= rebuildd
+
+cp rebuildd/bin/* /usr/local/sbin
+cp rebuildd/etc/default/rebuildd /etc/default
+cp rebuildd/etc/rebuildd/rebuilddrc /etc/rebuildd
+/etc/init.d/rebuildd start
+/etc/init.d/rebuildd-httpd start
