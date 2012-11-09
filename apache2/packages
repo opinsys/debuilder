@@ -1,0 +1,38 @@
+<VirtualHost *:80>
+        DocumentRoot /var/packages
+        # ServerName domain.tld
+        ErrorLog /var/log/apache2/error.log
+ 
+        <Directory "/var/packages">
+                Options Indexes FollowSymLinks MultiViews
+                DirectoryIndex index.html
+                AllowOverride Options
+                Order allow,deny
+                allow from all
+        </Directory>
+ 
+        <Directory "/var/packages/conf">
+                Order allow,deny
+                Deny from all
+                Satisfy all
+        </Directory>
+ 
+        <Directory "/var/packages/db">
+                Order allow,deny
+                Deny from all
+                Satisfy all
+        </Directory>
+
+        <Directory "/var/packages/incoming">
+                Order allow,deny
+                Deny from all
+                Satisfy all
+        </Directory>
+
+        <Directory "/var/packages/incomingtmp">
+                Order allow,deny
+                Deny from all
+                Satisfy all
+        </Directory>
+
+</VirtualHost>
