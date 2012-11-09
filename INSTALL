@@ -30,5 +30,5 @@ tools/setup_pbuilder_chroots.sh
 cp rebuildd/bin/* /usr/local/sbin
 cp rebuildd/etc/default/rebuildd /etc/default
 cp rebuildd/etc/rebuildd/rebuilddrc /etc/rebuildd
-/etc/init.d/rebuildd start
-/etc/init.d/rebuildd-httpd start
+service rebuildd start
+service rebuildd-httpd start
