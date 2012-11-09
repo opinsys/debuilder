@@ -1,0 +1,5 @@
+Name: incoming
+IncomingDir: incoming
+Allow: lucid precise quantal
+Cleanup: on_deny on_error
+Tempdir: incomingtmp

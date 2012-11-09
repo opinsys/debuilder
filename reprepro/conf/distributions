@@ -1,0 +1,35 @@
+Origin: Opinsys Oy
+Suite: lucid
+Version: 10.04
+Codename: lucid
+Architectures: i386 amd64 source
+Components: main non-free contrib
+Description: Opinsys Lucid Repository
+SignWith: yes
+DebIndices: Packages Release . .gz .bz2
+DscIndices: Sources Release .gz .bz2
+Tracking: all includechanges keepsources
+
+Origin: Opinsys Oy
+Suite: precise
+Version: 12.04
+Codename: precise
+Architectures: i386 amd64 source
+Components: main non-free contrib
+Description: Opinsys Precise Repository
+SignWith: yes
+DebIndices: Packages Release . .gz .bz2
+DscIndices: Sources Release .gz .bz2
+Tracking: all includechanges keepsources
+
+Origin: Opinsys Oy
+Suite: quantal
+Version: 12.10
+Codename: quantal
+Architectures: i386 amd64 source
+Components: main non-free contrib
+Description: Opinsys Quantal Repository
+SignWith: yes
+DebIndices: Packages Release . .gz .bz2
+DscIndices: Sources Release .gz .bz2
+Tracking: all includechanges keepsources
