@@ -9,6 +9,7 @@ mkdir -p /var/packages/conf
 mkdir -p /var/packages/incoming
 mkdir -p /var/packages/incomingtmp
 mkdir -p /var/packages/db
+mkdir -p /var/packages/logs
 
 cp reprepro/conf/* /var/packages/conf
 

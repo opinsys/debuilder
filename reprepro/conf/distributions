@@ -9,6 +9,7 @@ SignWith: yes
 DebIndices: Packages Release . .gz .bz2
 DscIndices: Sources Release .gz .bz2
 Tracking: all includechanges keepsources
+Log: lucid
 
 Origin: Opinsys Oy
 Suite: precise
@@ -21,6 +22,7 @@ SignWith: yes
 DebIndices: Packages Release . .gz .bz2
 DscIndices: Sources Release .gz .bz2
 Tracking: all includechanges keepsources
+Log: precise
 
 Origin: Opinsys Oy
 Suite: quantal
@@ -33,3 +35,4 @@ SignWith: yes
 DebIndices: Packages Release . .gz .bz2
 DscIndices: Sources Release .gz .bz2
 Tracking: all includechanges keepsources
+Log: quantal
