@@ -1,0 +1,97 @@
+Packaging infrastructure
+========================
+
+Consists of three separate pieces:
+
+1. Git-repository
+2. Builder
+3. Apt-repository
+
+Packager maintains Git-repository, makes source packages and uploads to
+Apt-repository. Builder waits for source packages and runs pbuilder to
+build binary packages. Succesful packages are then uploaded back to
+Apt-repository.
+
+== Pieces
+
+== Git-repository
+
+* Hosts packaging work for packages packaged by Opinsys
+
+* Repository contains one directory for each package:
+
+  ...
+  packages/cups/debian
+  packages/gnome-session/debian
+  ...
+
+* Q: "Where package X comes from?"
+  A: git log -- packages/X
+
+== Builder
+
+* Lives in a dedicated build server
+
+* rebuildd runs the whole building process
+
+* Builds with pbuilder
+
+* Separate pbuilder chroots for each distribution
+
+* Checks packages with lintian
+
+* Signs packages with deb-sign
+
+* Uploads packages to Apt-repository with dput
+
+== Apt-repository
+
+* Contains both binary and source packages
+
+* Repository is managed with reprepro
+
+[1] : http://wiki.debian.org/AptPreferences
+
+= Conventions
+
+== Package versions
+
+Packages packaged by us must include +opinsysX in it's version string.
+For example gnome-session 2.30.0-0ubuntu1+opinsys1:
+
+  Version number parts explained:
+
+    - 2.30.0 : upstream version
+
+    - -0 : it's is not packaged in Debian
+
+    - ubuntu1 : it's Ubuntu's first package of GNOME Session 2.30.0
+
+    - +opinsys1 : it's the first re-packaged version of GNOME Session
+      2.30.0 in our repository
+
+If the package needs to updated, then +opinsysX should be
+increased. The next package which is based on 2.30.0-0ubuntu1 should
+be 2.30.0-0ubuntu1+opinsys2 and so on.
+
+If Ubuntu releases newer package (2.30.0-0ubuntu2) and we want update
+our package but still apply our own packaging changes on top of the
+updated Ubuntu package, then the package version should be
+2.30.0-0ubuntu2+opinsys1.
+
+== Patching upstream code
+
+Use quilt patch series and add all Opinsys-specific patches to
+debian/patches/opinsys directory. Remember to add descriptive header
+and include author name.
+
+== Patching package code
+
+Make modifications and git-commit normally. Commit messages should be
+prefixed with the package name. For example:
+
+commit 015829537dcaec711b3accb7d1388bd31dcb937a
+Author: Tuomas Jorma Juhani Räsänen <tuomasjjrasanen@opinsys.fi>
+Date:   Wed Nov 7 07:19:24 2012 +0000
+
+    gnome-session: import from gnome-session_2.30.0-0ubuntu1
