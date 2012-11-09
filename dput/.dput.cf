@@ -1,0 +1,11 @@
+[DEFAULT]
+default_host_main = notspecified
+
+[local]
+fqdn = localhost
+method = local
+incoming = /var/packages/incoming
+allow_unsigned_uploads = 0
+run_dinstall = 0
+run_lintian = 1
+post_upload_command = reprepro -V -b /var/packages processincoming incoming
