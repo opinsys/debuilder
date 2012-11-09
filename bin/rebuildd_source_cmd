@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -eu
+
+p=$1
+v=$2
+
+apt-get update
+apt-get -q --download-only source ${p}=${v}
