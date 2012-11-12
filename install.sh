@@ -14,7 +14,7 @@ sudo mkdir -p $ROOT/bin
 sudo cp repo/conf/* $ROOT/repo/conf
 
 sudo cp apache2/opinsysbuilder /etc/apache2/sites-available
-sudo ln -s /etc/apache2/sites-available/opinsysbuilder /etc/apache2/sites-enabled/opinsysbuilder
+sudo ln -fs /etc/apache2/sites-available/opinsysbuilder /etc/apache2/sites-enabled/opinsysbuilder
 
 sudo cp bin/* $ROOT/bin
 sudo cp etc/default/rebuildd /etc/default
