@@ -1,0 +1,22 @@
+#!/bin/sh
+
+set -eu
+
+status=$1
+dist=$2
+name=$3
+version=$4
+srcpath=$5
+dstpath=$6
+
+case $status in
+    accepted)
+	for arch in i386 amd64
+	do
+	    echo "$name $version 1 $dist $arch" | rebuildd-job add
+	    echo "$name $version 1 $dist $arch" | rebuildd-job add
+	done
+	;;
+    *)
+	;;
+esac
