@@ -2,35 +2,33 @@
 
 set -u
 
+ROOT=/srv/opinsysbuilder
+
 sudo service rebuildd-httpd stop
 sudo service rebuildd stop
 
-sudo rm -rf /var/packages
+sudo rm -rf $ROOT
 sudo rm /var/lib/rebuildd/rebuildd.db
-sudo rm /usr/local/sbin/rebuildd_source_cmd
-sudo rm /usr/local/sbin/rebuildd_build_cmd
-sudo rm /usr/local/sbin/rebuildd_post_build_cmd
 
-sudo rm -f /etc/apache2/sites-available/packages
-sudo rm -f /etc/apache2/sites-enabled/packages
+sudo rm -f /etc/apache2/sites-available/opinsysbuilder
+sudo rm -f /etc/apache2/sites-enabled/opinsysbuilder
 
-sudo mkdir -p /var/packages/conf
-sudo mkdir -p /var/packages/incoming
-sudo mkdir -p /var/packages/incomingtmp
-sudo mkdir -p /var/packages/db
-sudo mkdir -p /var/packages/logs
+sudo mkdir -p $ROOT/repo/conf
+sudo mkdir -p $ROOT/repo/incoming
+sudo mkdir -p $ROOT/repo/incomingtmp
+sudo mkdir -p $ROOT/repo/db
+sudo mkdir -p $ROOT/repo/logs
+sudo mkdir -p $ROOT/bin
 
-sudo cp reprepro/conf/distributions /var/packages/conf
-sudo cp reprepro/conf/incoming /var/packages/conf
+sudo cp repo/conf/distributions $ROOT/repo/conf
+sudo cp repo/conf/incoming $ROOT/repo/conf
 
-sudo cp apache2/packages /etc/apache2/sites-available
-sudo ln -s /etc/apache2/sites-available/packages /etc/apache2/sites-enabled/packages
+sudo cp apache2/opinsysbuilder /etc/apache2/sites-available
+sudo ln -s /etc/apache2/sites-available/opinsysbuilder /etc/apache2/sites-enabled/opinsysbuilder
 
-sudo cp rebuildd/bin/rebuildd_source_cmd /usr/local/sbin
-sudo cp rebuildd/bin/rebuildd_build_cmd /usr/local/sbin
-sudo cp rebuildd/bin/rebuildd_post_build_cmd /usr/local/sbin
-sudo cp rebuildd/etc/default/rebuildd /etc/default
-sudo cp rebuildd/etc/rebuildd/rebuilddrc /etc/rebuildd
+sudo cp bin/* $ROOT/bin
+sudo cp etc/default/rebuildd /etc/default
+sudo cp etc/rebuildd/rebuilddrc /etc/rebuildd
 
 sudo rebuildd init
 sudo service rebuildd start

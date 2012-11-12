@@ -1,9 +1,9 @@
 <VirtualHost *:80>
-        DocumentRoot /var/packages
+        DocumentRoot /srv/opinsysbuilder/repo
         # ServerName domain.tld
         ErrorLog /var/log/apache2/error.log
  
-        <Directory "/var/packages">
+        <Directory "/srv/opinsysbuilder/repo">
                 Options Indexes FollowSymLinks MultiViews
                 DirectoryIndex index.html
                 AllowOverride Options
@@ -11,25 +11,25 @@
                 allow from all
         </Directory>
  
-        <Directory "/var/packages/conf">
+        <Directory "/srv/opinsysbuilder/repo/conf">
                 Order allow,deny
                 Deny from all
                 Satisfy all
         </Directory>
  
-        <Directory "/var/packages/db">
+        <Directory "/srv/opinsysbuilder/repo/db">
                 Order allow,deny
                 Deny from all
                 Satisfy all
         </Directory>
 
-        <Directory "/var/packages/incoming">
+        <Directory "/srv/opinsysbuilder/repo/incoming">
                 Order allow,deny
                 Deny from all
                 Satisfy all
         </Directory>
 
-        <Directory "/var/packages/incomingtmp">
+        <Directory "/srv/opinsysbuilder/repo/incomingtmp">
                 Order allow,deny
                 Deny from all
                 Satisfy all
