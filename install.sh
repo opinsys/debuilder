@@ -20,8 +20,6 @@ sudo cp bin/* $ROOT/bin
 sudo cp etc/default/rebuildd /etc/default
 sudo cp etc/rebuildd/rebuilddrc /etc/rebuildd
 
-cp dput/.dput.cf ~/
-
 sudo rebuildd init
 sudo service rebuildd start
 sudo service rebuildd-httpd start
