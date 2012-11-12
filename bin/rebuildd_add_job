@@ -14,7 +14,6 @@ case $status in
 	for arch in i386 amd64
 	do
 	    echo "$name $version 1 $dist $arch" | rebuildd-job add
-	    echo "$name $version 1 $dist $arch" | rebuildd-job add
 	done
 	;;
     *)
