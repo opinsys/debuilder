@@ -4,23 +4,22 @@ set -eu
 
 ROOT=/srv/opinsysbuilder
 
-sudo mkdir -p $ROOT/repo/conf
-sudo mkdir -p $ROOT/repo/incoming
-sudo mkdir -p $ROOT/repo/incomingtmp
-sudo mkdir -p $ROOT/repo/db
-sudo mkdir -p $ROOT/repo/logs
-sudo mkdir -p $ROOT/bin
+mkdir -p $ROOT/repo/conf
+mkdir -p $ROOT/repo/incoming
+mkdir -p $ROOT/repo/incomingtmp
+mkdir -p $ROOT/repo/db
+mkdir -p $ROOT/repo/logs
+mkdir -p $ROOT/bin
 
-sudo cp repo/conf/* $ROOT/repo/conf
+cp repo/conf/* $ROOT/repo/conf
 
-sudo cp apache2/opinsysbuilder /etc/apache2/sites-available
-sudo ln -fs /etc/apache2/sites-available/opinsysbuilder /etc/apache2/sites-enabled/opinsysbuilder
+cp apache2/opinsysbuilder /etc/apache2/sites-available
+ln -fs /etc/apache2/sites-available/opinsysbuilder /etc/apache2/sites-enabled/opinsysbuilder
 
-sudo cp bin/* $ROOT/bin
-sudo cp etc/default/rebuildd /etc/default
-sudo cp etc/rebuildd/rebuilddrc /etc/rebuildd
+cp bin/* $ROOT/bin
+cp etc/default/rebuildd /etc/default
+cp etc/rebuildd/rebuilddrc /etc/rebuildd
 
-sudo rebuildd init
-sudo service rebuildd start
-sudo service rebuildd-httpd start
-
+rebuildd init
+service rebuildd start
+service rebuildd-httpd start
