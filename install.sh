@@ -20,6 +20,8 @@ cp bin/* $ROOT/bin
 cp etc/default/rebuildd /etc/default
 cp etc/rebuildd/rebuilddrc /etc/rebuildd
 
+cp apt/opinsysbuilder.list /etc/apt/sources.list.d
+
 rebuildd init
 service rebuildd start
 service rebuildd-httpd start
