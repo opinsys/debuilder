@@ -1,17 +1,8 @@
 #!/bin/sh
 
-set -u
+set -eu
 
 ROOT=/srv/opinsysbuilder
-
-sudo service rebuildd-httpd stop
-sudo service rebuildd stop
-
-sudo rm -rf $ROOT
-sudo rm /var/lib/rebuildd/rebuildd.db
-
-sudo rm -f /etc/apache2/sites-available/opinsysbuilder
-sudo rm -f /etc/apache2/sites-enabled/opinsysbuilder
 
 sudo mkdir -p $ROOT/repo/conf
 sudo mkdir -p $ROOT/repo/incoming
@@ -29,8 +20,9 @@ sudo cp bin/* $ROOT/bin
 sudo cp etc/default/rebuildd /etc/default
 sudo cp etc/rebuildd/rebuilddrc /etc/rebuildd
 
+cp dput/.dput.cf ~/
+
 sudo rebuildd init
 sudo service rebuildd start
 sudo service rebuildd-httpd start
 
-cp dput/.dput.cf ~/
