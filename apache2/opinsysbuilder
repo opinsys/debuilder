@@ -35,4 +35,10 @@
                 Satisfy all
         </Directory>
 
+        <Directory "/srv/opinsysbuilder/repo/logs">
+                Order allow,deny
+                Deny from all
+                Satisfy all
+        </Directory>
+
 </VirtualHost>
