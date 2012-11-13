@@ -1,3 +1,3 @@
-deb-src http://localhost lucid main non-free contrib
-deb-src http://localhost quantal main non-free contrib
-deb-src http://localhost precise main non-free contrib
+deb-src http://localhost lucid main
+deb-src http://localhost quantal main
+deb-src http://localhost precise main

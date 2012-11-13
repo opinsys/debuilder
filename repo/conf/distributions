@@ -3,7 +3,7 @@ Suite: lucid
 Version: 10.04
 Codename: lucid
 Architectures: i386 amd64 source
-Components: main non-free contrib
+Components: main
 Description: Opinsys Lucid Repository
 SignWith: yes
 DebIndices: Packages Release . .gz .bz2
@@ -17,7 +17,7 @@ Suite: precise
 Version: 12.04
 Codename: precise
 Architectures: i386 amd64 source
-Components: main non-free contrib
+Components: main
 Description: Opinsys Precise Repository
 SignWith: yes
 DebIndices: Packages Release . .gz .bz2
@@ -31,7 +31,7 @@ Suite: quantal
 Version: 12.10
 Codename: quantal
 Architectures: i386 amd64 source
-Components: main non-free contrib
+Components: main
 Description: Opinsys Quantal Repository
 SignWith: yes
 DebIndices: Packages Release . .gz .bz2
