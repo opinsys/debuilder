@@ -10,7 +10,7 @@ DebIndices: Packages Release . .gz .bz2
 DscIndices: Sources Release .gz .bz2
 Tracking: all includechanges keepsources
 Log: lucid
- --changes /srv/opinsysbuilder/bin/rebuildd_add_job
+ --changes /srv/debuilder/bin/rebuildd_add_job
 
 Origin: Opinsys Oy
 Suite: precise
@@ -24,7 +24,7 @@ DebIndices: Packages Release . .gz .bz2
 DscIndices: Sources Release .gz .bz2
 Tracking: all includechanges keepsources
 Log: precise
- --changes /srv/opinsysbuilder/bin/rebuildd_add_job
+ --changes /srv/debuilder/bin/rebuildd_add_job
 
 Origin: Opinsys Oy
 Suite: quantal
@@ -38,4 +38,4 @@ DebIndices: Packages Release . .gz .bz2
 DscIndices: Sources Release .gz .bz2
 Tracking: all includechanges keepsources
 Log: quantal
- --changes /srv/opinsysbuilder/bin/rebuildd_add_job
+ --changes /srv/debuilder/bin/rebuildd_add_job
