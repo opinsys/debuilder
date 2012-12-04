@@ -1,19 +1,17 @@
 #!/bin/sh
 
-set -eu
+set -u
 
 status=$1
-dist=$2
-name=$3
+suite=$2
+package=$3
 version=$4
 srcpath=$5
-dstpath=$6
 
 case $status in
     accepted)
-	for arch in i386 amd64
-	do
-	    echo "$name $version 1 $dist $arch" | rebuildd-job add
+	for architecture in i386 amd64; do
+	    echo "$package $version 1 $suite $architecture" | rebuildd-job add
 	done
 	;;
     *)
