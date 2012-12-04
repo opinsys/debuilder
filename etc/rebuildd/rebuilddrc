@@ -1,5 +1,5 @@
 [build]
-check_every = 30
+check_every = 10
 max_threads = 2
 max_jobs = 5
 kill_timeout = 90
