@@ -1,11 +1,18 @@
 #!/bin/sh
 
-set -eu
+set -u
 
-d=$1
-a=$2
-p=$3
-v=$4
+dist=$1
+arch=$2
+name=$3
+vers=$4
 
-apt-get update
-apt-get -q --download-only source ${p}=${v}
+while true; do
+    apt-get update
+    if [ $? -ne 0 ]; then
+	sleep 30
+	continue
+    fi
+    apt-get -q --download-only source ${name}=${vers} && break
+    sleep 30
+done
