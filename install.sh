@@ -24,6 +24,6 @@ cp etc/rebuildd/rebuilddrc /etc/rebuildd
 
 cp apt/debuilder.list /etc/apt/sources.list.d
 
-rebuildd init
+rebuildd init || true # Database exists, fine!
 service rebuildd start
 service rebuildd-httpd start
