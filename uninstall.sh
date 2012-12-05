@@ -8,7 +8,6 @@ service rebuildd-httpd stop
 service rebuildd stop
 
 rm -rf $ROOT
-rm /var/lib/rebuildd/rebuildd.db
 
 rm -f /etc/apache2/sites-available/debuilder
 rm -f /etc/apache2/sites-enabled/debuilder
