@@ -14,7 +14,8 @@ do
 		--create \
 		--basetgz $basetgz \
 		--architecture $arch \
-		--distribution $dist
+		--distribution $dist \
+	        --components "main universe restricted"
 	fi
     done
 done
