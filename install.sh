@@ -13,6 +13,8 @@ mkdir -p $ROOT/bin
 
 cp repo/conf/* $ROOT/repo/conf
 
+reprepro -V -b $ROOT/repo export
+
 cp apache2/debuilder /etc/apache2/sites-available
 ln -fs /etc/apache2/sites-available/debuilder /etc/apache2/sites-enabled/debuilder
 
