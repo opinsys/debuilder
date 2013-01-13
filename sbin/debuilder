@@ -1,0 +1,14 @@
+#!/bin/sh
+
+. /etc/debuilder/config
+
+tmpdir=/var/tmp/debuilder
+mkdir -p $tmpdir
+inoticoming --foreground \
+            --logfile $tmpdir/inoticoming.log \
+            --pid-file $tmpdir/inoticoming.pid \
+            $spooldir \
+            --chdir $spooldir \
+            --suffix .dsc \
+            --stderr-to-log \
+            debuilder-add-rebuildd-job {} \;

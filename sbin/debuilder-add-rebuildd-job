@@ -1,0 +1,27 @@
+#!/bin/sh
+
+. /etc/debuilder/config
+
+pkg_name=$(sed -n 's/^Source: \(.*\)/\1/p; T; q' $1)
+pkg_version=$(sed -n 's/^Version: \(.*\)/\1/p; T; q' $1)
+pkg_arch=$(sed -n 's/^Architecture: \(.*\)/\1/p; T; q' $1)
+
+for dist in $dists; do
+    for arch in $archs; do
+        case $pkg_arch in
+            "all")
+                echo "$pkg_name $pkg_version 1 $dist $arch" | rebuildd-job add
+                break
+                ;;
+            "any")
+                echo "$pkg_name $pkg_version 1 $dist $arch" | rebuildd-job add
+                ;;
+            "$arch")
+                echo "$pkg_name $pkg_version 1 $dist $arch" | rebuildd-job add
+                ;;
+            *)
+                echo "unsupported architecture: $arch" >&2
+                ;;
+        esac
+    done
+done

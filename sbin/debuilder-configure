@@ -1,0 +1,74 @@
+#!/bin/sh
+
+. /etc/debuilder/config
+
+for dist in $dists
+do
+    for arch in $archs
+    do
+	basetgz=/var/cache/pbuilder/debuilder-$dist-$arch.tgz
+        [ -f "$basetgz" ] && continue
+	pbuilder \
+	    --create \
+	    --basetgz $basetgz \
+	    --architecture $arch \
+	    --distribution $dist
+    done
+done
+
+dbpath=/var/lib/rebuildd/rebuildd.db
+
+cat <<EOF > /etc/rebuildd/rebuilddrc
+[build]
+check_every = 10
+max_threads = 2
+max_jobs = 5
+kill_timeout = 90
+source_cmd = debuilder-copy-pkg $spooldir/\${p}_\${v}.dsc .
+build_cmd = pbuilder --build --basetgz /var/cache/pbuilder/debuilder-\${d}-\${a}.tgz --buildresult /var/cache/pbuilder/debuilder-result-\${d}-\${a} \${p}_\${v}.dsc
+post_build_cmd =
+dists = $dists
+work_dir = /var/cache/rebuildd/build
+database_uri = sqlite://$dbpath
+build_more_recent = 1
+more_archs = $archs
+no_system_arch = 1
+
+[mail]
+from = rebuildd@localhost
+mailto = rebuildd@localhost
+subject_prefix = [rebuildd]
+smtp_host = localhost
+smtp_port = 25
+
+[telnet]
+port = 9999
+ip = 127.0.0.1
+prompt = rebuildd@localhost->
+motd = Connected on rebuildd on localhost
+
+[http]
+port = 9998
+ip = 0.0.0.0
+log_lines_nb = 30
+templates_dir = /usr/share/rebuildd/templates
+cache = 1
+logfile = /var/log/rebuildd/httpd.log
+
+[log]
+file = /var/log/rebuildd/rebuildd.log
+time_format = %Y-%m-%d %H:%M:%S
+logs_dir = /var/log/rebuildd/build_logs
+mail_failed = 1
+mail_successful = 0
+EOF
+
+cat <<EOF > /etc/default/rebuildd
+START_REBUILDD=1
+START_REBUILDD_HTTPD=1
+PBUILDER_BIN=/usr/sbin/pbuilder
+ARCHS="$archs"
+DISTS="$dists"
+EOF
+
+[ -f "$dbpath" ] || rebuildd init

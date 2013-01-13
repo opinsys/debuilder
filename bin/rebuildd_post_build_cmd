@@ -1,8 +1,0 @@
-#!/bin/sh
-
-set -u
-
-dist=$1
-arch=$2
-name=$3
-vers=$4
