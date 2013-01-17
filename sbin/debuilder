@@ -4,8 +4,7 @@
 
 tmpdir=/var/tmp/debuilder
 mkdir -p $tmpdir
-inoticoming --foreground \
-            --logfile $tmpdir/inoticoming.log \
+inoticoming --logfile $tmpdir/inoticoming.log \
             --pid-file $tmpdir/inoticoming.pid \
             $spooldir \
             --chdir $spooldir \
