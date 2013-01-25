@@ -5,16 +5,14 @@ set -eu
 . /etc/debuilder/config
 
 src=$1
-
-if [ $# -ne 2 ]; then
-    dstdir=$spooldir
-else
-    dstdir=$2
-fi
-
 srcdir=$(dirname $src)
 
-sed -n -e '
+for dist in $dists; do
+    if [ $# -eq 2 ]; then
+	[ "$dist" != "$2" ] && continue
+    fi
+
+    sed -n -e '
 /^Files:/{
         :loop
         n
@@ -22,9 +20,10 @@ sed -n -e '
         s/^ //p
         b loop
 }' $src | while read md5 _ filename; do
-    filepath=$srcdir/$filename
-    echo "$md5  $filepath" | md5sum --check --quiet
-    cp --archive --target-directory=$dstdir $filepath
-done
+	filepath=$srcdir/$filename
+	echo "$md5  $filepath" | md5sum --check --quiet
+	cp --archive --target-directory="$spooldir/$dist" $filepath
+    done
 
-cp --archive --target-directory=$dstdir $src
+    cp --archive --target-directory="$spooldir/$dist" $src
+done
