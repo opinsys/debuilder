@@ -32,4 +32,4 @@ Run as a root:
 Usage
 -----
 
-  debuilder-copy-pkg anypackage_1.0-1.dsc # User must belong to debuilder group
+  debuilder-push-dsc anypackage_1.0-1.dsc # User must belong to debuilder group
