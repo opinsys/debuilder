@@ -26,7 +26,8 @@ installdirs :
 .PHONY : install
 install : config installdirs
 	$(INSTALL_PROGRAM) -t $(DESTDIR)$(bindir)/ \
-		bin/debuilder-copy-pkg
+		bin/debuilder-copy-pkg \
+		bin/debuilder-pull-dsc
 	$(INSTALL_PROGRAM) -t $(DESTDIR)$(sbindir)/ \
 		sbin/debuilder \
 		sbin/debuilder-add-rebuildd-job \

@@ -1,0 +1,30 @@
+#!/bin/sh
+
+set -eu
+
+. /etc/debuilder/config
+
+src=$1
+
+if [ $# -ne 2 ]; then
+    dstdir=$spooldir
+else
+    dstdir=$2
+fi
+
+srcdir=$(dirname $src)
+
+sed -n -e '
+/^Files:/{
+        :loop
+        n
+        /^$/ q
+        s/^ //p
+        b loop
+}' $src | while read md5 _ filename; do
+    filepath=$srcdir/$filename
+    echo "$md5  $filepath" | md5sum --check --quiet
+    cp --archive --target-directory=$dstdir $filepath
+done
+
+cp --archive --target-directory=$dstdir $src
