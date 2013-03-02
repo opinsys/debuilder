@@ -1,6 +1,8 @@
 #!/bin/sh
 
-. /etc/debuilder/config
+. debuilder-paths
+
+. "$DEBUILDER_CONFIG_FILE"
 
 for dist in $DEBUILDER_DISTS
 do

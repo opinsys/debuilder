@@ -13,8 +13,8 @@ INSTALL_DATA = $(INSTALL) -m 644
 .PHONY : all
 all :
 
-config : tools/generate-config.sh
-	tools/generate-config.sh $@ $(spooldir)/debuilder
+bin/debuilder-paths : tools/generate-debuilder-paths.sh
+	tools/generate-debuilder-paths.sh $@ $(spooldir)/debuilder $(sysconfdir)/debuilder/config
 
 .PHONY : installdirs
 installdirs :
@@ -24,14 +24,14 @@ installdirs :
 	mkdir -p $(DESTDIR)$(spooldir)/debuilder
 
 .PHONY : install
-install : config installdirs
+install : bin/debuilder-paths installdirs
 	$(INSTALL_PROGRAM) -t $(DESTDIR)$(bindir)/ \
 		bin/*
 	$(INSTALL_PROGRAM) -t $(DESTDIR)$(sbindir)/ \
 		sbin/*
 	$(INSTALL_DATA) -t $(DESTDIR)$(sysconfdir)/debuilder \
-		config
+		etc/debuilder/config
+	rm bin/debuilder-paths
 
 .PHONY : clean
 clean :
-	rm -f config

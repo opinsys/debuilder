@@ -2,7 +2,7 @@
 
 set -eu
 
-. /etc/debuilder/config
+. debuilder-paths
 
 src=$1
 

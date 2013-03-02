@@ -1,6 +1,8 @@
 #!/bin/sh
 
-. /etc/debuilder/config
+. debuilder-paths
+
+. "$DEBUILDER_CONFIG_FILE"
 
 pkg_name=$(sed -n 's/^Source: \(.*\)/\1/p; T; q' $1)
 pkg_version=$(sed -n 's/^Version: \(\([0-9]\+\):\)\?\(.*\)/\3/p; T; q' $1)

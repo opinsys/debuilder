@@ -2,7 +2,9 @@
 
 set -eu
 
-. /etc/debuilder/config
+. debuilder-paths
+
+. "$DEBUILDER_CONFIG_FILE"
 
 src=$1
 srcdir=$(dirname $src)
