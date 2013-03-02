@@ -2,13 +2,13 @@
 
 . /etc/debuilder/config
 
-for dist in $dists; do
+for dist in $DEBUILDER_DISTS; do
     tmpdir="/var/tmp/debuilder/$dist"
     mkdir -p "$tmpdir"
     inoticoming --logfile "$tmpdir/inoticoming.log" \
         --pid-file "$tmpdir/inoticoming.pid" \
-        "$spooldir/$dist" \
-        --chdir "$spooldir/$dist" \
+        "$DEBUILDER_SPOOLDIR/$dist" \
+        --chdir "$DEBUILDER_SPOOLDIR/$dist" \
         --suffix .dsc \
         --stderr-to-log \
         debuilder-add-rebuildd-job {} "$dist" \;

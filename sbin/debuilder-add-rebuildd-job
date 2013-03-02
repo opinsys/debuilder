@@ -7,7 +7,7 @@ pkg_version=$(sed -n 's/^Version: \(\([0-9]\+\):\)\?\(.*\)/\3/p; T; q' $1)
 pkg_arch=$(sed -n 's/^Architecture: \(.*\)/\1/p; T; q' $1)
 dist=$2
 
-for arch in $archs; do
+for arch in $DEBUILDER_ARCHS; do
     case $pkg_arch in
         "all")
             echo "$pkg_name $pkg_version 1 $dist $arch" | rebuildd-job add

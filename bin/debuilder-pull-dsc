@@ -7,7 +7,7 @@ set -eu
 src=$1
 
 if [ $# -ne 2 ]; then
-    dstdir=$spooldir
+    dstdir=$DEBUILDER_SPOOLDIR
 else
     dstdir=$2
 fi

@@ -2,9 +2,9 @@
 
 . /etc/debuilder/config
 
-for dist in $dists
+for dist in $DEBUILDER_DISTS
 do
-    for arch in $archs
+    for arch in $DEBUILDER_ARCHS
     do
 	basetgz=/var/cache/pbuilder/debuilder-$dist-$arch.tgz
         [ -f "$basetgz" ] && continue
@@ -24,14 +24,14 @@ check_every = 10
 max_threads = 2
 max_jobs = 5
 kill_timeout = 90
-source_cmd = debuilder-pull-dsc $spooldir/${d}/\${p}_\${v}.dsc .
+source_cmd = debuilder-pull-dsc $DEBULIDER_SPOOLDIR/${d}/\${p}_\${v}.dsc .
 build_cmd = pbuilder --build --basetgz /var/cache/pbuilder/debuilder-\${d}-\${a}.tgz --buildresult /var/cache/pbuilder/debuilder-result-\${d}-\${a} \${p}_\${v}.dsc
 post_build_cmd =
-dists = $dists
+dists = $DEBUILDER_DISTS
 work_dir = /var/cache/rebuildd/build
 database_uri = sqlite://$dbpath
 build_more_recent = 1
-more_archs = $archs
+more_archs = $DEBUILDER_ARCHS
 no_system_arch = 1
 
 [mail]
@@ -67,8 +67,8 @@ cat <<EOF > /etc/default/rebuildd
 START_REBUILDD=1
 START_REBUILDD_HTTPD=1
 PBUILDER_BIN=/usr/sbin/pbuilder
-ARCHS="$archs"
-DISTS="$dists"
+ARCHS="$DEBUILDER_ARCHS"
+DISTS="$DEBUILDER_DISTS"
 EOF
 
 [ -f "$dbpath" ] || rebuildd init

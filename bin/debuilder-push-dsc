@@ -7,7 +7,7 @@ set -eu
 src=$1
 srcdir=$(dirname $src)
 
-for dist in $dists; do
+for dist in $DEBUILDER_DISTS; do
     if [ $# -eq 2 ]; then
 	[ "$dist" != "$2" ] && continue
     fi
@@ -22,8 +22,8 @@ for dist in $dists; do
 }' $src | while read md5 _ filename; do
 	filepath=$srcdir/$filename
 	echo "$md5  $filepath" | md5sum --check --quiet
-	cp --archive --target-directory="$spooldir/$dist" $filepath
+	cp --archive --target-directory="$DEBUILDER_SPOOLDIR/$dist" $filepath
     done
 
-    cp --archive --target-directory="$spooldir/$dist" $src
+    cp --archive --target-directory="$DEBUILDER_SPOOLDIR/$dist" $src
 done
