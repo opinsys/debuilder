@@ -6,23 +6,27 @@
 
 pkg_name=$(sed -n 's/^Source: \(.*\)/\1/p; T; q' $1)
 pkg_version=$(sed -n 's/^Version: \(\([0-9]\+\):\)\?\(.*\)/\3/p; T; q' $1)
-pkg_arch=$(sed -n 's/^Architecture: \(.*\)/\1/p; T; q' $1)
+pkg_arch=$(sed -n 's/^Architecture: \(.*\)/\1/p' $1)
 dist=$2
 
 for arch in $DEBUILDER_ARCHS; do
-    case $pkg_arch in
-        "all")
-            echo "$pkg_name $pkg_version 1 $dist $arch" | rebuildd-job add
-            break
-            ;;
-        "any")
-            echo "$pkg_name $pkg_version 1 $dist $arch" | rebuildd-job add
-            ;;
-        "$arch")
-            echo "$pkg_name $pkg_version 1 $dist $arch" | rebuildd-job add
-            ;;
-        *)
-            echo "unsupported architecture: $arch" >&2
-            ;;
-    esac
+    echo "$pkg_arch" | grep -q "$arch" && {
+        echo "$pkg_name $pkg_version 1 $dist $arch" | rebuildd-job add
+        continue
+    }
+
+    echo "$pkg_arch" | grep -q "any" && {
+        echo "$pkg_name $pkg_version 1 $dist $arch" | rebuildd-job add
+        continue
+    }
+
+    echo "$pkg_arch" | grep -q "all" && {
+        echo "$pkg_name $pkg_version 1 $dist $arch" | rebuildd-job add
+
+        # Package supports all architectures, no need to build it in any
+        # other chroot.
+        break
+    }
+
+    echo "unsupported architecture: $arch" >&2
 done
