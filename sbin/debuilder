@@ -1,8 +1,12 @@
 #!/bin/sh
 
+set -eu
+
 . debuilder-paths
 
 . "$DEBUILDER_CONFIG_FILE"
+
+debuilder-configure
 
 for dist in $DEBUILDER_DISTS; do
     tmpdir="/var/tmp/debuilder/$dist"
