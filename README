@@ -26,7 +26,6 @@ Run
 
 Run as a root:
 
-  debuilder-configure # This is needed only once
   debuilder
 
 Usage

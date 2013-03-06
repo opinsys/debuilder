@@ -6,7 +6,7 @@ set -eu
 
 . "$DEBUILDER_CONFIG_FILE"
 
-debuilder-configure
+$DEBUILDER_LIBEXECDIR/debuilder-configure
 
 for dist in $DEBUILDER_DISTS; do
     tmpdir="/var/tmp/debuilder/$dist"
@@ -17,5 +17,5 @@ for dist in $DEBUILDER_DISTS; do
         --chdir "$DEBUILDER_SPOOLDIR/$dist" \
         --suffix .dsc \
         --stderr-to-log \
-        debuilder-add-rebuildd-job {} "$dist" \;
+        ${DEBUILDER_LIBEXECDIR}/debuilder-add-rebuildd-job {} "$dist" \;
 done

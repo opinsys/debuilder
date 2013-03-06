@@ -2,6 +2,7 @@ prefix = /usr/local
 exec_prefix = $(prefix)
 bindir = $(exec_prefix)/bin
 sbindir = $(exec_prefix)/sbin
+libexecdir = $(exec_prefix)/libexec
 sysconfdir = $(prefix)/etc
 localstatedir = $(prefix)/var
 spooldir = $(localstatedir)/spool
@@ -14,7 +15,7 @@ INSTALL_DATA = $(INSTALL) -m 644
 all :
 
 bin/debuilder-paths : tools/generate-debuilder-paths.sh
-	tools/generate-debuilder-paths.sh $@ $(spooldir)/debuilder $(sysconfdir)/debuilder/config
+	tools/generate-debuilder-paths.sh $@ $(spooldir)/debuilder $(sysconfdir)/debuilder/config $(libexecdir)/debuilder
 
 .PHONY : installdirs
 installdirs :
@@ -22,6 +23,7 @@ installdirs :
 	mkdir -p $(DESTDIR)$(sbindir)
 	mkdir -p $(DESTDIR)$(sysconfdir)/debuilder
 	mkdir -p $(DESTDIR)$(spooldir)/debuilder
+	mkdir -p $(DESTDIR)$(libexecdir)/debuilder
 
 .PHONY : install
 install : bin/debuilder-paths installdirs
@@ -29,6 +31,8 @@ install : bin/debuilder-paths installdirs
 		bin/*
 	$(INSTALL_PROGRAM) -t $(DESTDIR)$(sbindir)/ \
 		sbin/*
+	$(INSTALL_PROGRAM) -t $(DESTDIR)$(libexecdir)/debuilder \
+		libexec/*
 	$(INSTALL_DATA) -t $(DESTDIR)$(sysconfdir)/debuilder \
 		etc/debuilder/config
 	rm bin/debuilder-paths
