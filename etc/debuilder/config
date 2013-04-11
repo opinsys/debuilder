@@ -5,3 +5,4 @@ DEBUILDER_ARCHS="i386 amd64"
 DEBUILDER_GROUP=debuilder
 DEBUILDER_LOGDIR=/var/log/debuilder
 DEBUILDER_RUNDIR=/var/run/debuilder
+DEBUILDER_SPOOLDIR=/var/spool/debuilder
