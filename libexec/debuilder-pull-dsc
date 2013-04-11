@@ -4,7 +4,7 @@ set -eu
 
 . debuilder-paths
 
-src=$1
+dsc=$1
 
 if [ $# -ne 2 ]; then
     dstdir=$DEBUILDER_SPOOLDIR
@@ -12,7 +12,7 @@ else
     dstdir=$2
 fi
 
-srcdir=$(dirname $src)
+dscdir=$(dirname $dsc)
 
 sed -n -e '
 /^Files:/{
@@ -21,10 +21,10 @@ sed -n -e '
         /^$/ q
         s/^ //p
         b loop
-}' $src | while read md5 _ filename; do
-    filepath=$srcdir/$filename
+}' $dsc | while read md5 _ filename; do
+    filepath=$dscdir/$filename
     echo "$md5  $filepath" | md5sum --check --quiet
     cp --archive --target-directory=$dstdir $filepath
 done
 
-cp --archive --target-directory=$dstdir $src
+cp --archive --target-directory=$dstdir $dsc
