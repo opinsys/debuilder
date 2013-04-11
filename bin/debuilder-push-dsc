@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Copy Debian source package (files listed inside a .dsc file and the
+# .dsc file itself) to distribution-specific spooldir.
+
 set -eu
 
 . debuilder-paths
@@ -14,6 +17,7 @@ for dist in $DEBUILDER_DISTS; do
 	[ "$dist" != "$2" ] && continue
     fi
 
+    # Copy all files listed in the .dsc file.
     sed -n -e '
 /^Files:/{
         :loop
@@ -27,5 +31,6 @@ for dist in $DEBUILDER_DISTS; do
 	cp --archive --target-directory="$DEBUILDER_SPOOLDIR/$dist" $filepath
     done
 
+    # Finally, copy the .dsc file itself.
     cp --archive --target-directory="$DEBUILDER_SPOOLDIR/$dist" $src
 done
