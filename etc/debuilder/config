@@ -1,5 +1,7 @@
-## This file is POSIX shell fragment.
+## This file is POSIX shell fragment which is sourced by scripts.
 
 DEBUILDER_DISTS="lucid precise quantal"
 DEBUILDER_ARCHS="i386 amd64"
 DEBUILDER_GROUP=debuilder
+DEBUILDER_LOGDIR=/var/log/debuilder
+DEBUILDER_RUNDIR=/var/run/debuilder

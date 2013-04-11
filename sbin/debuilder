@@ -9,10 +9,10 @@ set -eu
 $DEBUILDER_LIBEXECDIR/debuilder-configure
 
 for dist in $DEBUILDER_DISTS; do
-    tmpdir="/var/tmp/debuilder/$dist"
-    mkdir -p "$tmpdir"
-    inoticoming --logfile "$tmpdir/inoticoming.log" \
-        --pid-file "$tmpdir/inoticoming.pid" \
+    mkdir -p "$DEBUILDER_LOGDIR"
+    mkdir -p "$DEBUILDER_RUNDIR"
+    inoticoming --logfile "$DEBUILDER_LOGDIR/inoticoming-$dist.log" \
+        --pid-file "$DEBUILDER_RUNDIR/inoticoming-$dist.pid" \
         "$DEBUILDER_SPOOLDIR/$dist" \
         --chdir "$DEBUILDER_SPOOLDIR/$dist" \
         --suffix .dsc \
