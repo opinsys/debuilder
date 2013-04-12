@@ -14,7 +14,7 @@ else
     dstdir=$2
 fi
 
-dscdir=$(dirname $dsc)
+dscdir=$(dirname "$dsc")
 
 sed -n -e '
 /^Files:/{
@@ -23,10 +23,10 @@ sed -n -e '
         /^$/ q
         s/^ //p
         b loop
-}' $dsc | while read md5 _ filename; do
+}' "$dsc" | while read md5 _ filename; do
     filepath=$dscdir/$filename
     echo "$md5  $filepath" | md5sum --check --quiet
-    cp --archive --target-directory=$dstdir $filepath
+    cp --archive --target-directory="$dstdir" "$filepath"
 done
 
-cp --archive --target-directory=$dstdir $dsc
+cp --archive --target-directory="$dstdir" "$dsc"

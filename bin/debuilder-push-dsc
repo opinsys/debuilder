@@ -10,7 +10,7 @@ set -eu
 . "$DEBUILDER_CONFDIR/config"
 
 dsc=$1
-dscdir=$(dirname $dsc)
+dscdir=$(dirname "$dsc")
 
 for dist in $DEBUILDER_DISTS; do
     if [ $# -eq 2 ]; then
@@ -25,12 +25,12 @@ for dist in $DEBUILDER_DISTS; do
         /^$/ q
         s/^ //p
         b loop
-}' $dsc | while read md5 _ filename; do
+}' "$dsc" | while read md5 _ filename; do
 	filepath=$dscdir/$filename
 	echo "$md5  $filepath" | md5sum --check --quiet
-	cp --archive --target-directory="$DEBUILDER_SPOOLDIR/$dist" $filepath
+	cp --archive --target-directory="$DEBUILDER_SPOOLDIR/$dist" "$filepath"
     done
 
     # Finally, copy the .dsc file itself.
-    cp --archive --target-directory="$DEBUILDER_SPOOLDIR/$dist" $dsc
+    cp --archive --target-directory="$DEBUILDER_SPOOLDIR/$dist" "$dsc"
 done
