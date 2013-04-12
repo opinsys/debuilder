@@ -10,7 +10,7 @@ Dependencies
 Install
 -------
 
-make prefix=/usr sysconfdir=/etc localstatedir=/var install
+make prefix=/usr sysconfdir=/etc install
 
 Configure
 ---------
