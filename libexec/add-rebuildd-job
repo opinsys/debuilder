@@ -2,7 +2,7 @@
 
 . debuilder-get-install-paths
 
-. "$DEBUILDER_CONFIG_FILE"
+. "$DEBUILDER_CONFDIR/config"
 
 pkg_name=$(sed -n 's/^Source: \(.*\)/\1/p; T; q' $1)
 pkg_version=$(sed -n 's/^Version: \(\([0-9]\+\):\)\?\(.*\)/\3/p; T; q' $1)

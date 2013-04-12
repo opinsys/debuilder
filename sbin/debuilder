@@ -4,9 +4,9 @@ set -eu
 
 . debuilder-get-install-paths
 
-. "$DEBUILDER_CONFIG_FILE"
+. "$DEBUILDER_CONFDIR/config"
 
-$DEBUILDER_LIBEXECDIR/debuilder-configure
+$DEBUILDER_UTILDIR/configure
 
 for dist in $DEBUILDER_DISTS; do
     mkdir -p "$DEBUILDER_LOGDIR"
@@ -17,5 +17,5 @@ for dist in $DEBUILDER_DISTS; do
         --chdir "$DEBUILDER_SPOOLDIR/$dist" \
         --suffix .dsc \
         --stderr-to-log \
-        ${DEBUILDER_LIBEXECDIR}/debuilder-add-rebuildd-job {} "$dist" \;
+        ${DEBUILDER_UTILDIR}/add-rebuildd-job {} "$dist" \;
 done

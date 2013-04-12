@@ -7,7 +7,7 @@ set -eu
 
 . debuilder-get-install-paths
 
-. "$DEBUILDER_CONFIG_FILE"
+. "$DEBUILDER_CONFDIR/config"
 
 dsc=$1
 dscdir=$(dirname $dsc)

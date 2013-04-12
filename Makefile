@@ -13,7 +13,7 @@ INSTALL_DATA = $(INSTALL) -m 644
 all :
 
 bin/debuilder-get-install-paths : tools/generate-debuilder-get-install-paths.sh
-	tools/generate-debuilder-get-install-paths.sh $@ $(sysconfdir)/debuilder/config $(libexecdir)/debuilder
+	tools/generate-debuilder-get-install-paths.sh $@ $(sysconfdir)/debuilder $(libexecdir)/debuilder
 
 .PHONY : installdirs
 installdirs :
