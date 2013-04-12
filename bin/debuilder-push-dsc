@@ -5,7 +5,7 @@
 
 set -eu
 
-. debuilder-paths
+. debuilder-get-install-paths
 
 . "$DEBUILDER_CONFIG_FILE"
 

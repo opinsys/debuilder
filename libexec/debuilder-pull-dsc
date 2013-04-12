@@ -2,7 +2,7 @@
 
 set -eu
 
-. debuilder-paths
+. debuilder-get-install-paths
 
 dsc=$1
 

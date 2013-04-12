@@ -12,8 +12,8 @@ INSTALL_DATA = $(INSTALL) -m 644
 .PHONY : all
 all :
 
-bin/debuilder-paths : tools/generate-debuilder-paths.sh
-	tools/generate-debuilder-paths.sh $@ $(sysconfdir)/debuilder/config $(libexecdir)/debuilder
+bin/debuilder-get-install-paths : tools/generate-debuilder-get-install-paths.sh
+	tools/generate-debuilder-get-install-paths.sh $@ $(sysconfdir)/debuilder/config $(libexecdir)/debuilder
 
 .PHONY : installdirs
 installdirs :
@@ -23,7 +23,7 @@ installdirs :
 	mkdir -p $(DESTDIR)$(libexecdir)/debuilder
 
 .PHONY : install
-install : bin/debuilder-paths installdirs
+install : bin/debuilder-get-install-paths installdirs
 	$(INSTALL_PROGRAM) -t $(DESTDIR)$(bindir)/ \
 		bin/*
 	$(INSTALL_PROGRAM) -t $(DESTDIR)$(sbindir)/ \
@@ -35,4 +35,4 @@ install : bin/debuilder-paths installdirs
 
 .PHONY : clean
 clean :
-	rm bin/debuilder-paths
+	rm bin/debuilder-get-install-paths
