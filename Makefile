@@ -32,7 +32,7 @@ install : bin/debuilder-paths installdirs
 		libexec/*
 	$(INSTALL_DATA) -t $(DESTDIR)$(sysconfdir)/debuilder \
 		etc/debuilder/config
-	rm bin/debuilder-paths
 
 .PHONY : clean
 clean :
+	rm bin/debuilder-paths
