@@ -4,6 +4,8 @@ set -eu
 
 . debuilder-get-install-paths
 
+. "$DEBUILDER_CONFDIR/config"
+
 dsc=$1
 
 if [ $# -ne 2 ]; then
