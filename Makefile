@@ -2,7 +2,7 @@ prefix = /usr/local
 exec_prefix = $(prefix)
 bindir = $(exec_prefix)/bin
 sbindir = $(exec_prefix)/sbin
-libexecdir = $(exec_prefix)/libexec
+libexecdir = $(exec_prefix)/lib
 sysconfdir = $(prefix)/etc
 
 INSTALL = install
