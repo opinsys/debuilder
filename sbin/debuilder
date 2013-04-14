@@ -36,7 +36,7 @@ debuilder_on_exit()
 . "$DEBUILDER_CONFDIR/config"
 
 # ... apply dynamic configuration on top of it.
-. "$DEBUILDER_UTILDIR/configure"
+. "$DEBUILDER_LIBDIR/configure"
 
 # There's definitely going to be something to cleanup on exit.
 trap debuilder_on_exit EXIT
@@ -53,7 +53,7 @@ for dist in $DEBUILDER_DISTS; do
         "$DEBUILDER_SPOOLDIR/$dist" \
         --chdir "$DEBUILDER_SPOOLDIR/$dist" \
         --suffix .dsc \
-        "${DEBUILDER_UTILDIR}/add-rebuildd-job" {} "$dist" \; \
+        "${DEBUILDER_LIBDIR}/add-rebuildd-job" {} "$dist" \; \
         2>&1 1>>"$DEBUILDER_LOGDIR/inoticoming-$dist.log" &
     echo $! 1>"$DEBUILDER_RUNDIR/inoticoming-$dist.pid"
 done

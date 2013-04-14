@@ -6,7 +6,7 @@ cat <<EOF > $1
 set -eu
 
 DEBUILDER_CONFDIR="$2"
-DEBUILDER_UTILDIR="$3"
+DEBUILDER_LIBDIR="$3"
 EOF
 
 chmod +x $1
