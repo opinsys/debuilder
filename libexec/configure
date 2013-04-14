@@ -69,12 +69,4 @@ mail_failed = 1
 mail_successful = 0
 EOF
 
-cat <<EOF > /etc/default/rebuildd
-START_REBUILDD=1
-START_REBUILDD_HTTPD=1
-PBUILDER_BIN=/usr/sbin/pbuilder
-ARCHS="$DEBUILDER_ARCHS"
-DISTS="$DEBUILDER_DISTS"
-EOF
-
 [ -f "$dbpath" ] || rebuildd init

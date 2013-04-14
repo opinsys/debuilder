@@ -1,21 +1,61 @@
-#!/bin/sh
+#!/bin/bash
 
+set -o posix
 set -eu
 
+debuilder_on_exit()
+{
+    # Save the stats code of last commands, in other words, the reasong
+    # why we are exiting.
+    local exitval=$?
+
+    # We are already exiting and doing some cleanups. We do not want to
+    # exit early.
+    set +e
+
+    # Kill all child processes we spawned.
+    for pidfile in $DEBUILDER_RUNDIR/*.pid; do
+        local childpid=$(cat "$pidfile")
+        echo "Killing child [$childpid]"
+        kill -TERM "$childpid"
+        rm "$pidfile"
+    done
+
+    rmdir "$DEBUILDER_RUNDIR"
+
+    # Remove all signal handlers and exit with the original status.
+    trap - EXIT
+    exit $exitval
+}
+
+# Get essential directory paths defined at installation time:
+# DEBUILDER_CONFDIR and DEBUILDER_LIBDIR.
 . debuilder-get-install-paths
 
+# Get configuration variables and ...
 . "$DEBUILDER_CONFDIR/config"
 
-$DEBUILDER_UTILDIR/configure
+# ... apply dynamic configuration on top of it.
+. "$DEBUILDER_UTILDIR/configure"
+
+# There's definitely going to be something to cleanup on exit.
+trap debuilder_on_exit EXIT
+
+mkdir -p "$DEBUILDER_RUNDIR"
+mkdir -p "$DEBUILDER_LOGDIR"
+
+rebuildd &
+echo $! 1>"$DEBUILDER_RUNDIR/rebuildd.pid"
 
 for dist in $DEBUILDER_DISTS; do
-    mkdir -p "$DEBUILDER_LOGDIR"
-    mkdir -p "$DEBUILDER_RUNDIR"
-    inoticoming --logfile "$DEBUILDER_LOGDIR/inoticoming-$dist.log" \
-        --pid-file "$DEBUILDER_RUNDIR/inoticoming-$dist.pid" \
+    inoticoming \
+        --foreground \
         "$DEBUILDER_SPOOLDIR/$dist" \
         --chdir "$DEBUILDER_SPOOLDIR/$dist" \
         --suffix .dsc \
-        --stderr-to-log \
-        ${DEBUILDER_UTILDIR}/add-rebuildd-job {} "$dist" \;
+        "${DEBUILDER_UTILDIR}/add-rebuildd-job" {} "$dist" \; \
+        2>&1 1>>"$DEBUILDER_LOGDIR/inoticoming-$dist.log" &
+    echo $! 1>"$DEBUILDER_RUNDIR/inoticoming-$dist.pid"
 done
+
+wait
