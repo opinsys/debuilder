@@ -64,7 +64,7 @@ logfile = /var/log/debuilder/rebuildd-httpd.log
 file = /var/log/debuilder/rebuildd.log
 time_format = %Y-%m-%d %H:%M:%S
 logs_dir = /var/log/debuilder/builds
-mail_failed = 1
+mail_failed = 0
 mail_successful = 0
 EOF
 
