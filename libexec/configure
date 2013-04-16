@@ -4,14 +4,12 @@
 
 . "$DEBUILDER_CONFDIR/config"
 
-for dist in $DEBUILDER_DISTS
-do
+for dist in $DEBUILDER_DISTS; do
     mkdir -p "$DEBUILDER_SPOOLDIR/$dist"
     chgrp "$DEBUILDER_GROUP" "$DEBUILDER_SPOOLDIR/$dist"
     chmod g+rwxs "$DEBUILDER_SPOOLDIR/$dist"
 
-    for arch in $DEBUILDER_ARCHS
-    do
+    for arch in $DEBUILDER_ARCHS; do
 	basetgz=/var/cache/pbuilder/debuilder-$dist-$arch.tgz
         [ -f "$basetgz" ] && continue
 	pbuilder \
