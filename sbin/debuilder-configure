@@ -20,6 +20,7 @@ for dist in $DEBUILDER_DISTS; do
     done
 done
 
+mkdir -p /var/lib/debuilder
 dbpath=/var/lib/debuilder/rebuildd.db
 
 cat <<EOF > /etc/rebuildd/rebuilddrc
