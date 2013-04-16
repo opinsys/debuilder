@@ -45,9 +45,6 @@ fi
 # Get configuration variables and ...
 . "$DEBUILDER_CONFDIR/config"
 
-# ... apply dynamic configuration on top of it.
-. "$DEBUILDER_LIBDIR/configure"
-
 # There's definitely going to be something to cleanup on exit.
 trap debuilder_on_exit EXIT
 
