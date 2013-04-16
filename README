@@ -1,32 +1,36 @@
 Debuilder
 =========
 
+:author: Tuomas Räsänen <tuomasjjrasanen@opinsys.fi>
+
 Dependencies
 ------------
 
 - rebuildd
 - inoticoming
+- daemon
 
 Install
 -------
 
-make prefix=/usr sysconfdir=/etc install
+make install
 
 Configure
 ---------
 
-Edit /etc/debuilder/config
+1. edit /etc/debuilder/config
 
-addgroup debuilder
+2. addgroup debuilder # or the group defined in /etc/debuilder/config
+
+3. debuilder-configure # creates chroots and prepares rebuildd config
 
 Run
 ---
 
-Run as a root:
-
-  debuilder
+debuilder # run as root
 
 Usage
 -----
 
-  debuilder-push-dsc anypackage_1.0-1.dsc # User must belong to debuilder group
+debuilder-push-dsc anypackage_1.0-1.dsc # user must belong to debuilder
+                                        # group
