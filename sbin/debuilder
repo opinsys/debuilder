@@ -57,6 +57,9 @@ mkdir -p "$DEBUILDER_LOGDIR"
 rebuildd &
 echo $! 1>"$DEBUILDER_RUNDIR/rebuildd.pid"
 
+rebuildd-httpd &
+echo $! 1>"$DEBUILDER_RUNDIR/rebuildd-httpd.pid"
+
 for dist in $DEBUILDER_DISTS; do
     inoticoming \
         --foreground \
