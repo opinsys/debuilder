@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. debuilder-get-install-paths
+. debuilder-installdirs
 
 . "$DEBUILDER_CONFDIR/config"
 

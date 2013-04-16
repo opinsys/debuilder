@@ -30,7 +30,7 @@ debuilder_on_exit()
 
 # Get essential directory paths defined at installation time:
 # DEBUILDER_CONFDIR and DEBUILDER_LIBDIR.
-. debuilder-get-install-paths
+. debuilder-installdirs
 
 # Get configuration variables and ...
 . "$DEBUILDER_CONFDIR/config"
