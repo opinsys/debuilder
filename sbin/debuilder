@@ -49,6 +49,7 @@ trap debuilder_on_exit EXIT
 
 mkdir -p "$DEBUILDER_RUNDIR"
 mkdir -p "$DEBUILDER_LOGDIR"
+mkdir -p "$DEBUILDER_BUILDDIR"
 
 rebuildd &
 echo $! 1>"$DEBUILDER_RUNDIR/rebuildd.pid"
