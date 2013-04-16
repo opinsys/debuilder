@@ -20,7 +20,7 @@ for dist in $DEBUILDER_DISTS; do
     done
 done
 
-dbpath=/var/lib/rebuildd/rebuildd.db
+dbpath=/var/lib/debuilder/rebuildd.db
 
 cat <<EOF > /etc/rebuildd/rebuilddrc
 [build]
@@ -39,17 +39,17 @@ more_archs = $DEBUILDER_ARCHS
 no_system_arch = 1
 
 [mail]
-from = rebuildd@localhost
-mailto = rebuildd@localhost
-subject_prefix = [rebuildd]
+from = debuilder@localhost
+mailto = debuilder@localhost
+subject_prefix = [debuilder]
 smtp_host = localhost
 smtp_port = 25
 
 [telnet]
 port = 9999
 ip = 127.0.0.1
-prompt = rebuildd@localhost->
-motd = Connected on rebuildd on localhost
+prompt = debuilder@localhost->
+motd = Connected on debuilder on localhost
 
 [http]
 port = 9998
@@ -57,12 +57,12 @@ ip = 0.0.0.0
 log_lines_nb = 30
 templates_dir = /usr/share/rebuildd/templates
 cache = 1
-logfile = /var/log/rebuildd/httpd.log
+logfile = /var/log/debuilder/rebuildd-httpd.log
 
 [log]
-file = /var/log/rebuildd/rebuildd.log
+file = /var/log/debuilder/rebuildd.log
 time_format = %Y-%m-%d %H:%M:%S
-logs_dir = /var/log/rebuildd/build_logs
+logs_dir = /var/log/debuilder/build_logs
 mail_failed = 1
 mail_successful = 0
 EOF
