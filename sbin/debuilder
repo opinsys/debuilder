@@ -7,7 +7,7 @@ debuilder_on_exit()
 {
     # Save the stats code of last commands, in other words, the reasong
     # why we are exiting.
-    local exitval=$?
+    local -r exitval=$?
 
     # We are already exiting and doing some cleanups. We do not want to
     # exit early.
