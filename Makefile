@@ -14,9 +14,9 @@ all :
 
 .PHONY : bin/debuilder-installdirs
 bin/debuilder-installdirs :
-        mkdir -p bin
-        echo "DEBUILDER_CONFDIR=$(sysconfdir)/debuilder" > $@
-        echo "DEBUILDER_LIBDIR=$(libexecdir)/debuilder" >> $@
+	mkdir -p bin
+	echo "DEBUILDER_CONFDIR=$(sysconfdir)/debuilder" > $@
+	echo "DEBUILDER_LIBDIR=$(libexecdir)/debuilder" >> $@
 
 .PHONY : installdirs
 installdirs :
