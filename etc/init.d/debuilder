@@ -21,6 +21,10 @@ PIDFILE=/var/run/$NAME.pid
 # Possible condition if the package has been removed (but not purged).
 [ -x "$EXECUTABLE" ] || exit 0
 
+[ -f "/etc/default/$NAME" ] && . "/etc/default/$NAME"
+
+[ $DEBUILDER_ENABLED -gt 0 ] || exit 0
+
 . /lib/lsb/init-functions
 
 case "$1" in
