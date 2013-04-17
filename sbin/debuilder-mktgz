@@ -4,9 +4,7 @@ set -eu
 
 . debuilder-installdirs
 
-. "$DEBUILDER_LIBDIR/config-defaults"
-
-. "$DEBUILDER_CONFDIR/config"
+. "$DEBUILDER_LIBDIR/common"
 
 dist=$1
 arch=$2

@@ -41,10 +41,7 @@ fi
 # Get essential directory paths defined at installation time.
 . debuilder-installdirs
 
-. "$DEBUILDER_LIBDIR/config-defaults"
-
-# Get configuration variables.
-. "$DEBUILDER_CONFDIR/config"
+. "$DEBUILDER_LIBDIR/common"
 
 # Update runtime configuration.
 . "$DEBUILDER_LIBDIR/configure"
@@ -61,10 +58,6 @@ echo $! 1>"$DEBUILDER_RUNDIR/rebuildd.pid"
 
 rebuildd-httpd &
 echo $! 1>"$DEBUILDER_RUNDIR/rebuildd-httpd.pid"
-
-DEBUILDER_ENVS=$(find /var/cache/pbuilder -name 'debuilder-env*' -printf '%P\n')
-
-DEBUILDER_DISTS=$(echo "$DEBUILDER_ENVS" | cut -d'.' -f2 | sort -u | tr '\n' ' ')
 
 for dist in $DEBUILDER_DISTS; do
     inoticoming \

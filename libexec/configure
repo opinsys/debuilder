@@ -4,14 +4,7 @@ set -eu
 
 . debuilder-installdirs
 
-. "$DEBUILDER_LIBDIR/config-defaults"
-
-. "$DEBUILDER_CONFDIR/config"
-
-DEBUILDER_ENVS=$(find /var/cache/pbuilder -name 'debuilder-env*' -printf '%P\n')
-
-DEBUILDER_DISTS=$(echo "$DEBUILDER_ENVS" | cut -d'.' -f2 | sort -u | tr '\n' ' ')
-DEBUILDER_ARCHS=$(echo "$DEBUILDER_ENVS" | cut -d'.' -f3 | sort -u | tr '\n' ' ')
+. "$DEBUILDER_LIBDIR/common"
 
 mkdir -p /var/lib/debuilder
 dbpath=/var/lib/debuilder/rebuildd.db
