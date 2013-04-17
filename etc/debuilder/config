@@ -5,3 +5,4 @@ DEBUILDER_RUNDIR=/var/run/debuilder
 DEBUILDER_SPOOLDIR=/var/spool/debuilder
 DEBUILDER_BUILDDIR=/var/cache/debuilder/build
 DEBUILDER_THREADS=4
+DEBUILDER_BUILDOPTS=-j4
