@@ -4,6 +4,8 @@ set -eu
 
 . debuilder-installdirs
 
+. "$DEBUILDER_LIBDIR/config-defaults"
+
 . "$DEBUILDER_CONFDIR/config"
 
 DEBUILDER_ENVS=$(find /var/cache/pbuilder -name 'debuilder-env*' -printf '%P\n')

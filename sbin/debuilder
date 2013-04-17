@@ -41,6 +41,8 @@ fi
 # Get essential directory paths defined at installation time.
 . debuilder-installdirs
 
+. "$DEBUILDER_LIBDIR/config-defaults"
+
 # Get configuration variables.
 . "$DEBUILDER_CONFDIR/config"
 

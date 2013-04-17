@@ -2,6 +2,8 @@
 
 . debuilder-installdirs
 
+. "$DEBUILDER_LIBDIR/config-defaults"
+
 . "$DEBUILDER_CONFDIR/config"
 
 pkg_name=$(sed -n 's/^Source: \(.*\)/\1/p; T; q' "$1")
