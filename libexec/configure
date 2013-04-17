@@ -17,7 +17,7 @@ dbpath=/var/lib/debuilder/rebuildd.db
 cat <<EOF > /etc/rebuildd/rebuilddrc
 [build]
 check_every = 10
-max_threads = 2
+max_threads = $DEBUILDER_THREADS
 max_jobs = 5
 kill_timeout = 90
 source_cmd = true
