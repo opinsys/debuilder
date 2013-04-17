@@ -2,15 +2,19 @@
 
 set -eu
 
+
 DEBUILDER_LOGDIR=/var/log/debuilder
+DEBUILDER_BUILDLOGDIR=/var/log/debuilder/build
 DEBUILDER_RUNDIR=/var/run/debuilder
 DEBUILDER_SPOOLDIR=/var/spool/debuilder
-DEBUILDER_BUILDDIR=/var/cache/debuilder/build
+DEBUILDER_CACHEDIR=/var/cache/debuilder
+DEBUILDER_APTCACHE=/var/cache/debuilder/aptcache
+DEBUILDER_BUILDPLACE=/var/cache/debuilder/build
 DEBUILDER_THREADS=4
 DEBUILDER_BUILDOPTS=-j4
 
 [ -f "$DEBUILDER_CONFDIR/config" ] && . "$DEBUILDER_CONFDIR/config"
 
-DEBUILDER_ENVS=$(find /var/cache/pbuilder -name 'debuilder-env*' -printf '%P\n')
+DEBUILDER_ENVS=$(find "$DEBUILDER_CACHEDIR" -name 'debuilder-env*' -printf '%P\n')
 DEBUILDER_DISTS=$(echo "$DEBUILDER_ENVS" | cut -d'.' -f2 | sort -u | tr '\n' ' ')
 DEBUILDER_ARCHS=$(echo "$DEBUILDER_ENVS" | cut -d'.' -f3 | sort -u | tr '\n' ' ')

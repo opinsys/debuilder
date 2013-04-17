@@ -51,10 +51,10 @@ max_threads = $DEBUILDER_THREADS
 max_jobs = 5
 kill_timeout = 90
 source_cmd = true
-build_cmd = pbuilder --build --debbuildopts $DEBUILDER_BUILDOPTS --aptcache $DEBUILDER_BUILDDIR/aptcache --basetgz /var/cache/pbuilder/debuilder-env.\${d}.\${a}.tgz --buildplace $DEBUILDER_BUILDDIR --buildresult /var/cache/pbuilder/debuilder-result-\${d}-\${a} $DEBUILDER_SPOOLDIR/\${d}/\${p}_\${v}.dsc
+build_cmd = pbuilder --build --debbuildopts $DEBUILDER_BUILDOPTS --aptcache $DEBUILDER_APTCACHE --basetgz $DEBUILDER_CACHEDIR/debuilder-env.\${d}.\${a}.tgz --buildplace $DEBUILDER_BUILDPLACE --buildresult $DEBUILDER_CACHEDIR/debuilder-result-\${d}-\${a} $DEBUILDER_SPOOLDIR/\${d}/\${p}_\${v}.dsc
 post_build_cmd =
 dists = $DEBUILDER_DISTS
-work_dir = $DEBUILDER_BUILDDIR
+work_dir = /var/cache/rebuildd/build
 database_uri = sqlite://$dbpath
 build_more_recent = 1
 more_archs = $DEBUILDER_ARCHS
@@ -84,7 +84,7 @@ logfile = $DEBUILDER_LOGDIR/rebuildd-httpd.log
 [log]
 file = $DEBUILDER_LOGDIR/rebuildd.log
 time_format = %Y-%m-%d %H:%M:%S
-logs_dir = $DEBUILDER_LOGDIR/builds
+logs_dir = $DEBUILDER_BUILDLOGDIR
 mail_failed = 0
 mail_successful = 0
 EOF
@@ -95,8 +95,11 @@ EOF
 trap debuilder_on_exit EXIT
 
 mkdir -p "$DEBUILDER_RUNDIR"
-mkdir -p "$DEBUILDER_LOGDIR/builds"
-mkdir -p "$DEBUILDER_BUILDDIR/aptcache"
+mkdir -p "$DEBUILDER_LOGDIR"
+mkdir -p "$DEBUILDER_BUILDLOGDIR"
+mkdir -p "$DEBUILDER_CACHEDIR"
+mkdir -p "$DEBUILDER_BUILDDIR"
+mkdir -p "$DEBUILDER_APTCACHE"
 
 rebuildd &
 echo $! 1>"$DEBUILDER_RUNDIR/rebuildd.pid"
