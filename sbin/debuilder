@@ -52,7 +52,7 @@ trap debuilder_on_exit EXIT
 
 mkdir -p "$DEBUILDER_RUNDIR"
 mkdir -p "$DEBUILDER_LOGDIR/builds"
-mkdir -p "$DEBUILDER_BUILDDIR"
+mkdir -p "$DEBUILDER_BUILDDIR/aptcache"
 
 rebuildd &
 echo $! 1>"$DEBUILDER_RUNDIR/rebuildd.pid"
