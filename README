@@ -20,14 +20,18 @@ Configure
 
 1. edit /etc/debuilder/config
 
-2. addgroup debuilder # or the group defined in /etc/debuilder/config
+2. addgroup debuilder
 
-3. debuilder-configure # creates chroots and prepares rebuildd config
+3. debuilder-mktgz wheezy i386
 
 Run
 ---
 
 debuilder # run as root
+
+or
+
+service debuilder start
 
 Usage
 -----
