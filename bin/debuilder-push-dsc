@@ -12,6 +12,10 @@ set -eu
 dsc=$1
 dscdir=$(dirname "$dsc")
 
+DEBUILDER_ENVS=$(find /var/cache/pbuilder -name 'debuilder-env*' -printf '%P\n')
+
+DEBUILDER_DISTS=$(echo "$DEBUILDER_ENVS" | cut -d'.' -f2 | sort -u | tr '\n' ' ')
+
 for dist in $DEBUILDER_DISTS; do
     if [ $# -eq 2 ]; then
 	[ "$dist" != "$2" ] && continue

@@ -1,0 +1,20 @@
+#!/bin/sh
+
+set -eu
+
+. debuilder-installdirs
+
+. "$DEBUILDER_CONFDIR/config"
+
+dist=$1
+arch=$2
+
+mkdir -p "$DEBUILDER_SPOOLDIR/$dist"
+chgrp debuilder "$DEBUILDER_SPOOLDIR/$dist"
+chmod g+rwxs "$DEBUILDER_SPOOLDIR/$dist"
+
+basetgz=/var/cache/pbuilder/debuilder-env.$dist.$arch.tgz
+
+[ -f "$basetgz" ] && exit 0
+
+pbuilder --create --basetgz "$basetgz" --architecture "$arch" --distribution "$dist"

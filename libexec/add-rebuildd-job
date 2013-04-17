@@ -9,6 +9,10 @@ pkg_version=$(sed -n 's/^Version: \(\([0-9]\+\):\)\?\(.*\)/\3/p; T; q' "$1")
 pkg_arch=$(sed -n 's/^Architecture: \(.*\)/\1/p' "$1")
 dist=$2
 
+DEBUILDER_ENVS=$(find /var/cache/pbuilder -name 'debuilder-env*' -printf '%P\n')
+
+DEBUILDER_ARCHS=$(echo "$DEBUILDER_ENVS" | cut -d'.' -f3 | sort -u | tr '\n' ' ')
+
 for arch in $DEBUILDER_ARCHS; do
     echo "$pkg_arch" | grep -q "$arch" && {
         echo "$pkg_name $pkg_version 1 $dist $arch" | rebuildd-job add

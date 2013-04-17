@@ -1,24 +1,15 @@
 #!/bin/sh
 
+set -eu
+
 . debuilder-installdirs
 
 . "$DEBUILDER_CONFDIR/config"
 
-for dist in $DEBUILDER_DISTS; do
-    mkdir -p "$DEBUILDER_SPOOLDIR/$dist"
-    chgrp "$DEBUILDER_GROUP" "$DEBUILDER_SPOOLDIR/$dist"
-    chmod g+rwxs "$DEBUILDER_SPOOLDIR/$dist"
+DEBUILDER_ENVS=$(find /var/cache/pbuilder -name 'debuilder-env*' -printf '%P\n')
 
-    for arch in $DEBUILDER_ARCHS; do
-	basetgz=/var/cache/pbuilder/debuilder-$dist-$arch.tgz
-        [ -f "$basetgz" ] && continue
-	pbuilder \
-	    --create \
-	    --basetgz "$basetgz" \
-	    --architecture "$arch" \
-	    --distribution "$dist"
-    done
-done
+DEBUILDER_DISTS=$(echo "$DEBUILDER_ENVS" | cut -d'.' -f2 | sort -u | tr '\n' ' ')
+DEBUILDER_ARCHS=$(echo "$DEBUILDER_ENVS" | cut -d'.' -f3 | sort -u | tr '\n' ' ')
 
 mkdir -p /var/lib/debuilder
 dbpath=/var/lib/debuilder/rebuildd.db
@@ -30,7 +21,7 @@ max_threads = 2
 max_jobs = 5
 kill_timeout = 90
 source_cmd = true
-build_cmd = pbuilder --build --basetgz /var/cache/pbuilder/debuilder-\${d}-\${a}.tgz --buildplace $DEBUILDER_BUILDDIR --buildresult /var/cache/pbuilder/debuilder-result-\${d}-\${a} $DEBUILDER_SPOOLDIR/\${d}/\${p}_\${v}.dsc
+build_cmd = pbuilder --build --basetgz /var/cache/pbuilder/debuilder-env.\${d}.\${a}.tgz --buildplace $DEBUILDER_BUILDDIR --buildresult /var/cache/pbuilder/debuilder-result-\${d}-\${a} $DEBUILDER_SPOOLDIR/\${d}/\${p}_\${v}.dsc
 post_build_cmd =
 dists = $DEBUILDER_DISTS
 work_dir = $DEBUILDER_BUILDDIR
