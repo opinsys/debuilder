@@ -79,12 +79,12 @@ ip = 0.0.0.0
 log_lines_nb = 30
 templates_dir = /usr/share/rebuildd/templates
 cache = 1
-logfile = /var/log/debuilder/rebuildd-httpd.log
+logfile = $DEBUILDER_LOGDIR/rebuildd-httpd.log
 
 [log]
-file = /var/log/debuilder/rebuildd.log
+file = $DEBUILDER_LOGDIR/rebuildd.log
 time_format = %Y-%m-%d %H:%M:%S
-logs_dir = /var/log/debuilder/builds
+logs_dir = $DEBUILDER_LOGDIR/builds
 mail_failed = 0
 mail_successful = 0
 EOF
