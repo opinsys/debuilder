@@ -23,8 +23,6 @@ debuilder_on_exit()
 
     rmdir "$DEBUILDER_RUNDIR"
 
-    # Remove all signal handlers and exit with the original status.
-    trap - EXIT
     exit $exitval
 }
 
