@@ -12,6 +12,7 @@ DEBUILDER_APTCACHE=/var/cache/debuilder/aptcache
 DEBUILDER_BUILDPLACE=/var/cache/debuilder/build
 DEBUILDER_THREADS=4
 DEBUILDER_BUILDOPTS=-j4
+DEBUILDER_APTREPODIR=/srv/debuilder/aptrepo
 
 [ -f "$DEBUILDER_CONFDIR/config" ] && . "$DEBUILDER_CONFDIR/config"
 
