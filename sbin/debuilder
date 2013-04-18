@@ -98,7 +98,7 @@ mkdir -p "$DEBUILDER_RUNDIR"
 mkdir -p "$DEBUILDER_LOGDIR"
 mkdir -p "$DEBUILDER_BUILDLOGDIR"
 mkdir -p "$DEBUILDER_CACHEDIR"
-mkdir -p "$DEBUILDER_BUILDDIR"
+mkdir -p "$DEBUILDER_BUILDPLACE"
 mkdir -p "$DEBUILDER_APTCACHE"
 
 rebuildd &
