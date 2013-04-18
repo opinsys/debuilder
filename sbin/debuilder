@@ -51,7 +51,7 @@ max_threads = $DEBUILDER_THREADS
 max_jobs = 5
 kill_timeout = 90
 source_cmd = true
-build_cmd = pbuilder --build --debbuildopts $DEBUILDER_BUILDOPTS --aptcache $DEBUILDER_APTCACHE --basetgz $DEBUILDER_CACHEDIR/debuilder-env.\${d}.\${a}.tgz --buildplace $DEBUILDER_BUILDPLACE --buildresult $DEBUILDER_CACHEDIR/debuilder-result-\${d}-\${a} $DEBUILDER_SPOOLDIR/\${d}/\${p}_\${v}.dsc
+build_cmd = pbuilder --build --debbuildopts $DEBUILDER_BUILDOPTS --debbuildopts -sa --aptcache $DEBUILDER_APTCACHE --basetgz $DEBUILDER_CACHEDIR/debuilder-env.\${d}.\${a}.tgz --buildplace $DEBUILDER_BUILDPLACE --buildresult $DEBUILDER_CACHEDIR/debuilder-result-\${d}-\${a} $DEBUILDER_SPOOLDIR/\${d}/\${p}_\${v}.dsc
 post_build_cmd = reprepro --ignore=wrongdistribution -Vb $DEBUILDER_APTREPODIR include \${d} $DEBUILDER_CACHEDIR/debuilder-result-\${d}-\${a}/\${p}_\${v}_\${a}.changes
 dists = $DEBUILDER_DISTS
 work_dir = /var/cache/rebuildd/build
