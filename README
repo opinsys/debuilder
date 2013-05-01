@@ -19,11 +19,13 @@ make install
 Configure
 ---------
 
-1. edit /etc/debuilder/config
+1. Edit /etc/debuilder/config
 
-2. addgroup debuilder
+2. Add 'debuilder' group
 
-3. debuilder-mktgz wheezy i386
+3. Create pbuilder environments for each distribution and architecture
+   combination. Debuilder looks for files
+   /var/cache/pbuilder/debuilder-env.$dist.$arch.tgz
 
 Run
 ---
