@@ -41,6 +41,10 @@ fi
 
 . "$DEBUILDER_LIBDIR/common"
 
+mkdir -p "$DEBUILDER_SPOOLDIR/$dist"
+chgrp debuilder "$DEBUILDER_SPOOLDIR/$dist"
+chmod g+rwxs "$DEBUILDER_SPOOLDIR/$dist"
+
 mkdir -p /var/lib/debuilder
 dbpath=/var/lib/debuilder/rebuildd.db
 
